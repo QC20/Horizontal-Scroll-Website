@@ -1,0 +1,144 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+[data-theme='light'], html {
+  --overlay: hsl(0 0% 0% / 0.15);
+  --button: color-mix(in lch, canvas, hsl(190 60% 80%));
+  color-scheme: light only;
+  background: white;
+}
+
+[data-theme='dark'] {
+  --overlay: hsl(0 0% 100% / 0.23);
+  --button: color-mix(in lch, canvas, hsl(190 60% 40%));
+  color-scheme: dark only;
+  background: black;
+}
+@media (prefers-color-scheme: dark) {
+  html {
+    --overlay: hsl(0 0% 100% / 0.23);
+    --button: color-mix(in lch, canvas, hsl(190 60% 40%));
+    color-scheme: dark only;
+    background: black;
+  }
+}
+
+body {
+  display: grid;
+  place-items: center normal;
+  min-height: 100vh;
+  font-family: 'SF Pro Text', 'SF Pro Icons', 'AOS Icons', 'Helvetica Neue',
+    Helvetica, Arial, sans-serif, system-ui;
+}
+
+body::before {
+  --size: 45px;
+  --line: color-mix(in lch, #8b8b8b, transparent 65%);
+  content: '';
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background: linear-gradient(
+      90deg,
+      var(--line) 1px,
+      transparent 1px var(--size)
+    )
+    50% 50% / var(--size) var(--size),
+    linear-gradient(
+      var(--line) 1px,
+      transparent 1px var(--size)
+    )
+    50% 50% / var(--size) var(--size);
+  mask: linear-gradient(-20deg, transparent 50%, white);
+  top: 0;
+  transform-style: flat;
+  pointer-events: none;
+  z-index: -1;
+}
+
+:root {
+  --size: 40;
+  --radius: .5rem;
+  --img-size: calc(var(--size) * 1rem);
+  --list-size: calc(--size / 2);
+  --card: 1vw;
+  --card-size: 300px;
+  timeline-scope: --list;
+}
+
+h1 {
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  margin: 0;
+  translate: calc(-150%) -50%;
+  rotate: -90deg;
+  animation: fade both linear;
+  animation-timeline: --list;
+  animation-range: 0 80px;
+}
+
+ul {
+  scroll-snap-type: x mandatory;
+  height: 100vh;
+  width: 100vw;
+  container-type: inline-size;
+  scroll-timeline: --list inline;
+  align-items: center;
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+  overflow: auto;
+  padding-inline: calc(50cqi - (var(--card-size) * 0.5));
+  scroll-padding-inline: calc(50% - (var(--card-size) * (var(--padding))));
+}
+
+ul li {
+  width: var(--card-size);
+  height: var(--card-size);
+  scroll-snap-align: center;
+  aspect-ratio: 9 / 16;
+  border-radius: var(--radius);
+  flex: 1 0 var(--card-size);
+  overflow: hidden;
+  position: relative;
+}
+
+@supports (animation-timeline: scroll()) {
+  :root {
+    --offset: 0;
+  }
+
+  li {
+    view-timeline: --item inline;
+  }
+
+  img {
+    width: 300%;
+    height: 300%;
+    object-fit: cover;
+    top: 50%;
+    position: absolute;
+    translate: 0 -50%;
+    right: 0;
+    animation: p both linear;
+    animation-timeline: --item;
+  }
+
+}
+@keyframes fade {
+  to {
+    opacity: 0;
+    filter: blur(20px);
+  }
+}
+@keyframes p {
+  cover 100% {
+    translate: calc((100% - var(--card-size)) * var(--travel, 1)) -50%;
+  }
+}
