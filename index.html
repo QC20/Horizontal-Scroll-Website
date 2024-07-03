@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="src/styles/loader.css">
 </head>
 <body>
+    <div class="loading-screen">
+        <div class="loading">Loading</div>
+    </div>
     <h1>scroll.</h1>
     <ul>
         <li>
@@ -123,16 +126,6 @@
             </a>
         </li>
     </ul>
-    <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const loader = document.querySelector('.loading');
-                loader.style.opacity = '0';
-                setTimeout(function() {
-                    loader.style.display = 'none';
-                }, 500);
-            }, 2500);
-        });
-    </script>
+    <script src="src/javascript/loader.js"></script>
 </body>
 </html>

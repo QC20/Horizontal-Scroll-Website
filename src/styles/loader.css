@@ -1,13 +1,5 @@
 /* loader.css */
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-family: monospace;
-}
-
-.loading {
+.loading-screen {
     position: fixed;
     top: 0;
     left: 0;
@@ -21,7 +13,11 @@ body {
     transition: opacity 0.5s ease-out;
 }
 
-.loading:after {
+.loading-screen .loading {
+    font-family: monospace;
+}
+
+.loading-screen .loading:after {
     animation: dots 1.5s steps(3) infinite;
     content: ' ';
     display: inline-block;
@@ -33,4 +29,9 @@ body {
     25% { content: '.'; }
     50% { content: '..'; }
     75%, 100% { content: '...'; }
+}
+
+body.loaded .loading-screen {
+    opacity: 0;
+    pointer-events: none;
 }
