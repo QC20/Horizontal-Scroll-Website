@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scroll Gallery</title>
     <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="stylesheet" href="src/styles/loader.css">
 </head>
 <body>
     <h1>scroll.</h1>
@@ -122,5 +123,16 @@
             </a>
         </li>
     </ul>
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loader = document.querySelector('.loading');
+                loader.style.opacity = '0';
+                setTimeout(function() {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 2500);
+        });
+    </script>
 </body>
 </html>

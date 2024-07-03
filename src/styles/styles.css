@@ -27,8 +27,6 @@
 }
 
 body {
-  display: grid;
-  place-items: center normal;
   min-height: 100vh;
   font-family: 'SF Pro Text', 'SF Pro Icons', 'AOS Icons', 'Helvetica Neue',
     Helvetica, Arial, sans-serif, system-ui;
@@ -168,4 +166,8 @@ ul li {
   cover 100% {
     translate: calc((100% - var(--card-size)) * var(--travel, 1)) -50%;
   }
+}
+body:not(.loading) {
+  display: grid;
+  place-items: center normal;
 }
