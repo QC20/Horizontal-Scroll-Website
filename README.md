@@ -1,4 +1,4 @@
-# Scroll Gallery: An Interactive Web-Based Image Gallery
+# Scroll. - An Interactive Web-Based Image Gallery
 
 ## Project Overview
 
